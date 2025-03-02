@@ -48,7 +48,10 @@ export default class Binding {
       this.reassign(path);
     }
 
-    this.clearValue();
+    if (!process.env.BABEL_8_BREAKING) {
+      // @ts-expect-error Removed in Babel 8
+      this.clearValue();
+    }
   }
 
   constantViolations: Array<NodePath> = [];
@@ -57,27 +60,6 @@ export default class Binding {
   referencePaths: Array<NodePath> = [];
   referenced: boolean = false;
   references: number = 0;
-
-  declare hasDeoptedValue: boolean;
-  declare hasValue: boolean;
-  declare value: any;
-
-  deoptValue() {
-    this.clearValue();
-    this.hasDeoptedValue = true;
-  }
-
-  setValue(value: any) {
-    if (this.hasDeoptedValue) return;
-    this.hasValue = true;
-    this.value = value;
-  }
-
-  clearValue() {
-    this.hasDeoptedValue = false;
-    this.hasValue = false;
-    this.value = null;
-  }
 
   /**
    * Register a constant violation with the provided `path`.
@@ -112,6 +94,34 @@ export default class Binding {
     this.references--;
     this.referenced = !!this.references;
   }
+}
+
+if (!process.env.BABEL_8_BREAKING) {
+  // @ts-expect-error Removed in Babel 8
+  Binding.prototype.deoptValue = function () {
+    // @ts-expect-error Removed in Babel 8
+    this.clearValue();
+    // @ts-expect-error Removed in Babel 8
+    this.hasDeoptedValue = true;
+  };
+  // @ts-expect-error Removed in Babel 8
+  Binding.prototype.setValue = function (value) {
+    // @ts-expect-error Removed in Babel 8
+    if (this.hasDeoptedValue) return;
+    // @ts-expect-error Removed in Babel 8
+    this.hasValue = true;
+    // @ts-expect-error Removed in Babel 8
+    this.value = value;
+  };
+  // @ts-expect-error Removed in Babel 8
+  Binding.prototype.clearValue = function () {
+    // @ts-expect-error Removed in Babel 8
+    this.hasDeoptedValue = false;
+    // @ts-expect-error Removed in Babel 8
+    this.hasValue = false;
+    // @ts-expect-error Removed in Babel 8
+    this.value = null;
+  };
 }
 
 function isDeclaredInLoop(path: NodePath) {

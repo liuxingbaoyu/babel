@@ -246,8 +246,12 @@ function _evaluate(path: NodePath, state: State): any {
           }
         }
       }
-      if (binding.hasValue) {
-        return binding.value;
+      if (!process.env.BABEL_8_BREAKING) {
+        // @ts-expect-error Removed in Babel 8
+        if (binding.hasValue) {
+          // @ts-expect-error Removed in Babel 8
+          return binding.value;
+        }
       }
     }
 
