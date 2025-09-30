@@ -183,6 +183,8 @@ function runCacheableScriptInTestContext(
   return module;
 }
 
+console.log(process.version);
+
 /**
  * A basic implementation of CommonJS so we can execute `@babel/polyfill` inside our test context.
  * This allows us to run our unittests
