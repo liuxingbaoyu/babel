@@ -4170,8 +4170,11 @@ export default (superClass: ClassWithMixin<typeof Parser, IJSXParserMixin>) =>
       return super.shouldParseArrow(params);
     }
 
-    shouldParseAsyncArrow(): boolean {
-      return this.match(tt.colon) || super.shouldParseAsyncArrow();
+    shouldParseAsyncArrow(params: Array<N.Node>): boolean {
+      if (this.match(tt.colon)) {
+        return params.every(expr => this.isAssignable(expr, true));
+      }
+      return super.shouldParseAsyncArrow(params);
     }
 
     canHaveLeadingDecorator() {
