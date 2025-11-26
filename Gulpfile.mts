@@ -900,7 +900,7 @@ gulp.task("materialize-babel-8", async () => {
       fs.promises
         .readFile(file, "utf-8")
         .then(async code => {
-          await ac.signal.throwIfAborted();
+          ac.signal.throwIfAborted();
           return applyBabelToSource(code, file, {
             plugins: [
               [
@@ -930,7 +930,7 @@ gulp.task("materialize-babel-8", async () => {
           });
         })
         .then(async transformedCode => {
-          await ac.signal.throwIfAborted();
+          ac.signal.throwIfAborted();
           return fs.promises.writeFile(file, transformedCode);
         })
     );
@@ -1061,12 +1061,15 @@ gulp.task(
 );
 
 gulp.task("build-perf", function () {
-  const pkgs = ["packages/babel-parser"].map(src => ({
-    src,
-    format: USE_ESM ? "esm" : "cjs",
-    dest: "lib",
-    input: getIndexFromPackage(src),
-  }));
+  const pkgs = ["packages/babel-parser"].map(
+    src =>
+      ({
+        src,
+        format: USE_ESM ? "esm" : "cjs",
+        dest: "lib",
+        input: getIndexFromPackage(src),
+      }) as PackageInfo
+  );
   return buildRollup(pkgs);
 });
 
