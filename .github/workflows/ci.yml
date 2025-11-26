@@ -862,7 +862,7 @@ jobs:
 
   codspeed:
     name: Codspeed
-    runs-on: ubuntu-latest
+    runs-on: codspeed-macro
     needs: prepare-yarn-cache
     steps:
       - name: Checkout code
@@ -879,8 +879,6 @@ jobs:
         run: make prepublish-build
       - name: Run benchmarks
         uses: CodSpeedHQ/action@v4
-        env:
-          CODSPEED_RUNNER_MODE: walltime
         with:
           mode: walltime
           run: node --expose-gc ./benchmark/index.mjs --only-current
