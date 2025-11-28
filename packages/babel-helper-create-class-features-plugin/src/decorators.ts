@@ -1124,7 +1124,7 @@ function transformClass(
   // transform simple auto accessors which are not decorated, and handle inferred
   // class name when the initializer of the class field is a class expression
   for (const element of body) {
-    if (element.isClassProperty()) {
+    if (process.env.BABEL_8_BREAKING && element.isClassProperty()) {
       assertFieldTransformed(element);
     }
 
