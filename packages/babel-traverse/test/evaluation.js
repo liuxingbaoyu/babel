@@ -452,6 +452,29 @@ describe("evaluation", function () {
     expect(evalResult.confident).toBe(false);
   });
 
+  it("should not crash on {}.toString", function () {
+    const path = getPath(`String({ ["toString"]: "".toUpperCase });`);
+    const evalResult = path.get("body.0.expression").evaluate();
+    expect(evalResult.confident).toBe(false);
+  });
+
+  it("should not crash on {}.toString 2", function () {
+    const path = getPath(`"" + { ["toString"]: "".toUpperCase };`);
+    const evalResult = path.get("body.0.expression").evaluate();
+    expect(evalResult.confident).toBe(false);
+  });
+
+  it("should not crash on {}.toString 3", function () {
+    const path = getPath(
+      `"" == { ["toString"]: "".toUpperCase };
+      ({ ["toString"]: "".toUpperCase } == "");`,
+    );
+    const evalResult = path.get("body.0.expression").evaluate();
+    expect(evalResult.confident).toBe(false);
+    const evalResult2 = path.get("body.1.expression").evaluate();
+    expect(evalResult2.confident).toBe(false);
+  });
+
   addDeoptTest("({a:{b}})", "ObjectExpression", "Identifier");
   addDeoptTest("({[a + 'b']: 1})", "ObjectExpression", "Identifier");
   addDeoptTest("[{a}]", "ArrayExpression", "Identifier");
