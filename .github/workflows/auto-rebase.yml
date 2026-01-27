@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read # to fetch code
       pull-requests: read # to get PR metadata
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Get Pull Request branch
         uses: actions/github-script@v8
@@ -55,10 +55,10 @@ jobs:
 
       - uses: actions/github-script@v8
         with:
-          github-token: ${{ secrets.BOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { default: rebase } = await import('${{ github.workspace }}/scripts/actions/auto-rebase.ts');
-            await rebase(github, context);
+            await rebase(github, context, ${{ github.event.inputs.pull_request }});
 
       - name: Commit updates
         run: |

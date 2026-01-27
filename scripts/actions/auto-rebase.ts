@@ -3,12 +3,13 @@ import { execSync, spawnSync } from "node:child_process";
 
 export default async function (
   github: ReturnType<typeof getOctokit>,
-  ctx: typeof context
+  ctx: typeof context,
+  pull_number: number
 ) {
   const { data: pullRequest } = await github.rest.pulls.get({
     owner: ctx.repo.owner,
     repo: ctx.repo.repo,
-    pull_number: ctx.issue.number,
+    pull_number,
   });
 
   const headBranch = pullRequest.head.ref;
