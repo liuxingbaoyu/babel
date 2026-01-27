@@ -21,10 +21,16 @@ export default async function (
     `Rebasing branch ${headRepo}:${headBranch} onto ${baseRepo}:${baseBranch}...`
   );
 
-  execSync(
-    `git pull --rebase https://github.com/${baseRepo}.git ${baseBranch}`,
+  const result = spawnSync(
+    "git",
+    ["pull", "--rebase", `https://github.com/${baseRepo}.git`, baseBranch],
     { stdio: "inherit" }
   );
+
+  if (result.status === 0) {
+    console.log("Rebase completed successfully without conflicts.");
+    return;
+  }
 
   while (true) {
     execSync("node ./scripts/git-resolve-conflicts.ts", { stdio: "inherit" });
