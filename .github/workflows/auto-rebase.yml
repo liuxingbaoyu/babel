@@ -53,6 +53,11 @@ jobs:
           node-version: "*"
           cache: "yarn"
 
+      - name: Config git
+        run: |
+          git config user.name "Babel Bot"
+          git config user.email "babel-bot@users.noreply.github.com"
+
       - uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -62,6 +67,4 @@ jobs:
 
       - name: Commit updates
         run: |
-          git config user.name "Babel Bot"
-          git config user.email "babel-bot@users.noreply.github.com"
           git push -f "https://babel-bot:${{ secrets.BOT_TOKEN }}@github.com/${{ steps.pr-meta.outputs.repository }}.git" ${{ steps.pr-meta.outputs.branch }}
