@@ -38,7 +38,7 @@ export default async function (
     const hash = execSync("git rev-parse REBASE_HEAD", {
       encoding: "utf8",
     }).trim();
-    const result = spawnSync("git", ["rebase", "--continue"], {
+    const result = spawnSync("git", ["rebase", "--continue", "--no-edit"], {
       encoding: "utf8",
       stdio: "inherit",
     });
