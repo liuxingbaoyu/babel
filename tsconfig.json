@@ -11,7 +11,9 @@
     "./lib/libdom-minimal.d.ts",
     "dts/**/*.d.ts",
     "*.mts",
-    "packages/*/test/*.tst.ts"
+    "packages/*/test/*.tst.ts",
+    "scripts/*/*.ts",
+    "scripts/*.ts"
   ],
   "exclude": [
     "dts/**/*.tst.d.ts"
