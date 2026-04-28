@@ -24,9 +24,6 @@
     "lru-cache": "^7.14.1",
     "resolve": "2.0.0-next.5"
   },
-  "devDependencies": {
-    "@types/fs-readdir-recursive": "^1.1.0"
-  },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },

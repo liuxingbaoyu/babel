@@ -12,7 +12,7 @@ import type {
   ObjectMethod,
   ObjectProperty,
   PrivateName,
-} from "../types.d.ts";
+} from "../types.ts";
 import { hasNewLine } from "../util/whitespace.ts";
 import { isIdentifierChar } from "../util/identifier.ts";
 import ClassScopeHandler from "../util/class-scope.ts";

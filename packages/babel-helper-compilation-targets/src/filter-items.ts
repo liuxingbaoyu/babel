@@ -2,7 +2,7 @@ import semver from "semver";
 
 import pluginsCompatData from "@babel/compat-data/plugins" with { type: "json" };
 
-import type { Targets } from "./types.ts";
+import type { Targets } from "./types.d.ts";
 import {
   getLowestImplementedVersion,
   isUnreleasedVersion,

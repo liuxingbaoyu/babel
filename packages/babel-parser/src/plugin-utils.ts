@@ -1,5 +1,5 @@
 import type Parser from "./parser/index.ts";
-import type { PluginConfig } from "./typings.ts";
+import type { PluginConfig } from "./typings.d.ts";
 
 export type Plugin = PluginConfig;
 

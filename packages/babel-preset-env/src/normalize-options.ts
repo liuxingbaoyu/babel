@@ -18,7 +18,7 @@ import type {
   ModuleOption,
   Options,
   PluginListOption,
-} from "./types.ts";
+} from "./types.d.ts";
 
 const v = new OptionValidator(PACKAGE_JSON.name);
 

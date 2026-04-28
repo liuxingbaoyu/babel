@@ -1,7 +1,3 @@
-export type Pos = {
-  start: number;
-};
-
 // These are used when `options.locations` is on, for the
 // `startLoc` and `endLoc` properties.
 

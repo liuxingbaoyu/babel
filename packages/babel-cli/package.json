@@ -39,8 +39,6 @@
   "devDependencies": {
     "@babel/core": "workspace:^",
     "@babel/helper-transform-fixture-test-runner": "workspace:^",
-    "@types/fs-readdir-recursive": "^1.1.0",
-    "@types/glob": "^7.2.0",
     "semver": "catalog:"
   },
   "bin": {

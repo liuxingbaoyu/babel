@@ -5,7 +5,7 @@ import {
   isUnreleasedVersion,
   getLowestImplementedVersion,
 } from "./utils.ts";
-import type { Target, Targets } from "./types.ts";
+import type { Target, Targets } from "./types.d.ts";
 
 export function getInclusionReasons(
   item: string,
