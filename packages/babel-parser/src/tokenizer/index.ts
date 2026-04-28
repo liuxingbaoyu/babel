@@ -42,7 +42,7 @@ import {
   type StringContentsErrorHandlers,
 } from "@babel/helper-string-parser";
 
-import type { Plugin } from "../typings.ts";
+import type { Plugin } from "../typings.d.ts";
 
 function buildPosition(pos: number, lineStart: number, curLine: number) {
   return new Position(curLine, pos - lineStart, pos);

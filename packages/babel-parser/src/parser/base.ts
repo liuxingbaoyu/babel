@@ -9,7 +9,7 @@ import type {
   ParserPluginWithOptions,
   PluginConfig,
   PluginOptions,
-} from "../typings.ts";
+} from "../typings.d.ts";
 import type * as N from "../types.ts";
 
 export default class BaseParser {

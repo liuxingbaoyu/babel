@@ -20,7 +20,6 @@
   ],
   "externalPlugins": [
     "external-helpers",
-    "syntax-decimal",
     "syntax-decorators",
     "syntax-destructuring-private",
     "syntax-do-expressions",
@@ -28,7 +27,6 @@
     "syntax-flow",
     "syntax-function-bind",
     "syntax-function-sent",
-    "syntax-import-reflection",
     "syntax-jsx",
     "syntax-module-blocks",
     "syntax-optional-chaining-assign",

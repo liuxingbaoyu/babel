@@ -28,8 +28,8 @@ import * as NodePath_modification from "./modification.ts";
 import * as NodePath_family from "./family.ts";
 import * as NodePath_comments from "./comments.ts";
 import * as NodePath_virtual_types_validator from "./lib/virtual-types-validator.ts";
-import type { NodePathAssertions } from "./generated/asserts.ts";
-import type { NodePathValidators } from "./generated/validators.ts";
+import type { NodePathAssertions } from "./generated/asserts.d.ts";
+import type { NodePathValidators } from "./generated/validators.d.ts";
 import { setup } from "./context.ts";
 
 const debug = createDebug("babel");

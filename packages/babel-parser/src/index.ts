@@ -9,7 +9,7 @@ export type {
   FlowPluginOptions,
   PipelineOperatorPluginOptions,
   TypeScriptPluginOptions,
-} from "./typings.ts";
+} from "./typings.d.ts";
 import Parser, { type PluginsMap } from "./parser/index.ts";
 import type { ParseError } from "./parse-error.ts";
 export type { ParseError };

@@ -4,7 +4,6 @@
  */
 import makeNoopPlugin from "../make-noop-plugin.ts";
 import externalHelpers from "@babel/plugin-external-helpers";
-import syntaxDecimal from "@babel/plugin-syntax-decimal";
 import syntaxDecorators from "@babel/plugin-syntax-decorators";
 import syntaxDestructuringPrivate from "@babel/plugin-syntax-destructuring-private";
 import syntaxDoExpressions from "@babel/plugin-syntax-do-expressions";
@@ -12,7 +11,6 @@ import syntaxExportDefaultFrom from "@babel/plugin-syntax-export-default-from";
 import syntaxFlow from "@babel/plugin-syntax-flow";
 import syntaxFunctionBind from "@babel/plugin-syntax-function-bind";
 import syntaxFunctionSent from "@babel/plugin-syntax-function-sent";
-import syntaxImportReflection from "@babel/plugin-syntax-import-reflection";
 import syntaxJsx from "@babel/plugin-syntax-jsx";
 import syntaxModuleBlocks from "@babel/plugin-syntax-module-blocks";
 import syntaxOptionalChainingAssign from "@babel/plugin-syntax-optional-chaining-assign";
@@ -103,7 +101,6 @@ export const syntaxAsyncGenerators = makeNoopPlugin(),
   syntaxTopLevelAwait = makeNoopPlugin();
 export {
   externalHelpers,
-  syntaxDecimal,
   syntaxDecorators,
   syntaxDestructuringPrivate,
   syntaxDoExpressions,
@@ -111,7 +108,6 @@ export {
   syntaxFlow,
   syntaxFunctionBind,
   syntaxFunctionSent,
-  syntaxImportReflection,
   syntaxJsx,
   syntaxModuleBlocks,
   syntaxOptionalChainingAssign,
@@ -203,7 +199,6 @@ export const all: Record<string, any> = {
   "syntax-optional-catch-binding": syntaxOptionalCatchBinding,
   "syntax-top-level-await": syntaxTopLevelAwait,
   "external-helpers": externalHelpers,
-  "syntax-decimal": syntaxDecimal,
   "syntax-decorators": syntaxDecorators,
   "syntax-destructuring-private": syntaxDestructuringPrivate,
   "syntax-do-expressions": syntaxDoExpressions,
@@ -211,7 +206,6 @@ export const all: Record<string, any> = {
   "syntax-flow": syntaxFlow,
   "syntax-function-bind": syntaxFunctionBind,
   "syntax-function-sent": syntaxFunctionSent,
-  "syntax-import-reflection": syntaxImportReflection,
   "syntax-jsx": syntaxJsx,
   "syntax-module-blocks": syntaxModuleBlocks,
   "syntax-optional-chaining-assign": syntaxOptionalChainingAssign,
