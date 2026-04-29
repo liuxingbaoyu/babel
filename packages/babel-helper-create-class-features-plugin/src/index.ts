@@ -54,7 +54,7 @@ export function createClassFeaturePlugin({
   inherits,
 }: Options): PluginObject {
   if (feature & FEATURES.decorators) {
-    return createDecoratorTransform(api, { loose }, "2023-11", inherits);
+    return createDecoratorTransform(api, "2023-11", inherits);
   }
 
   const setPublicClassFields = api.assumption("setPublicClassFields");

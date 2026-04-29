@@ -7,12 +7,7 @@ import {
   FEATURES,
 } from "@babel/helper-create-class-features-plugin";
 import legacyVisitor from "./transformer-legacy.ts";
-import type { Options as SyntaxOptions } from "@babel/plugin-syntax-decorators";
-
-interface Options extends SyntaxOptions {
-  /** @deprecated use `constantSuper` assumption instead. Only supported in 2021-12 version. */
-  loose?: boolean;
-}
+import type { Options } from "@babel/plugin-syntax-decorators";
 
 export type { Options };
 
@@ -38,7 +33,6 @@ export default declare((api, options: Options) => {
       feature: FEATURES.decorators,
       inherits: syntaxDecorators,
       decoratorVersion: version,
-      // loose: options.loose, Not supported
     });
   } else {
     throw new Error(

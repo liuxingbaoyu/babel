@@ -4,7 +4,6 @@ import { types as t, type NodePath } from "@babel/core";
 
 export interface Options {
   requireDirective?: boolean;
-  allowDeclareFields?: boolean;
 }
 
 export default declare((api, opts: Options) => {

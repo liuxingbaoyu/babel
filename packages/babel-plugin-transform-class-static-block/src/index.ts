@@ -1,5 +1,5 @@
 import { declare } from "@babel/helper-plugin-utils";
-import type { NodePath, Scope, types as t } from "@babel/core";
+import type { NodePath, types as t } from "@babel/core";
 
 import {
   buildNamedEvaluationVisitor,
@@ -10,11 +10,10 @@ import {
 /**
  * Generate a uid that is not in `denyList`
  *
- * @param {Scope} scope
  * @param {Set<string>} denyList a deny list that the generated uid should avoid
  * @returns
  */
-function generateUid(scope: Scope, denyList: Set<string>) {
+function generateUid(denyList: Set<string>) {
   const name = "";
   let uid;
   let i = 1;
@@ -210,7 +209,7 @@ export default declare(({ types: t, template, traverse, assertVersion }) => {
                 privateNames.add(path.get("key.id").node.name);
               }
             }
-            const staticBlockPrivateId = generateUid(scope, privateNames);
+            const staticBlockPrivateId = generateUid(privateNames);
             const staticBlockRef = t.privateName(
               t.identifier(staticBlockPrivateId),
             );

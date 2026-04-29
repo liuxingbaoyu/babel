@@ -86,7 +86,6 @@ export interface Options extends SyntaxOptions {
   jsxPragmaFrag?: string;
   onlyRemoveTypeImports?: boolean;
   optimizeConstEnums?: boolean;
-  allowDeclareFields?: boolean;
 }
 
 type ExtraNodeProps = {

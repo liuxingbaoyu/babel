@@ -15,8 +15,6 @@ export interface Options {
   pure?: string;
   runtime?: "automatic" | "classic";
   throwIfNamespace?: boolean;
-  useBuiltIns?: boolean;
-  useSpread?: boolean;
 }
 
 export default declarePreset((api, opts: Options) => {

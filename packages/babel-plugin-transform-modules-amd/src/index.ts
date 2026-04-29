@@ -60,7 +60,7 @@ type State = {
   rejectId?: t.Identifier;
 };
 
-export default declare<State>((api, options: Options) => {
+export default declare<State, Options>((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
 
   const { allowTopLevelThis, strict, strictMode, importInterop, noInterop } =

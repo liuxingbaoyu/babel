@@ -21,10 +21,6 @@ export function hasDecorators(node: t.Class) {
 // We inline this package
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as charCodes from "charcodes";
-interface Options {
-  /** @deprecated use `constantSuper` assumption instead. Only supported in 2021-12 version. */
-  loose?: boolean;
-}
 
 type ClassDecoratableElement =
   | t.ClassMethod
@@ -2293,16 +2289,14 @@ function generateLetUidIdentifier(scope: Scope, name: string) {
 
 export default function (
   { assertVersion, assumption }: PluginAPI,
-  { loose }: Options,
   version: DecoratorVersionKind,
   inherits: PluginObject["inherits"],
 ): PluginObject {
   assertVersion(REQUIRED_VERSION("^7.21.0 || ^8.0.0"));
 
   const VISITED = new WeakSet<NodePath>();
-  const constantSuper = assumption("constantSuper") ?? loose ?? false;
-  const ignoreFunctionLength =
-    assumption("ignoreFunctionLength") ?? loose ?? false;
+  const constantSuper = assumption("constantSuper") ?? false;
+  const ignoreFunctionLength = assumption("ignoreFunctionLength") ?? false;
 
   const namedEvaluationVisitor = buildNamedEvaluationVisitor(
     isDecoratedAnonymousClassExpression,

@@ -3,7 +3,6 @@ const v = new OptionValidator("@babel/preset-typescript");
 
 export interface Options {
   ignoreExtensions?: boolean;
-  allowDeclareFields?: boolean;
   allowNamespaces?: boolean;
   disallowAmbiguousJSXLike?: boolean;
   jsxPragma?: string;

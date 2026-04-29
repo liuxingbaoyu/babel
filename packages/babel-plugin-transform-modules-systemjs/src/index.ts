@@ -168,7 +168,7 @@ type ReassignmentVisitorState = {
   buildCall: (name: string, value: t.Expression) => t.ExpressionStatement;
 };
 
-export default declare<PluginState>((api, options: Options) => {
+export default declare<PluginState, Options>((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
 
   const { systemGlobal = "System", allowTopLevelThis = false } = options;

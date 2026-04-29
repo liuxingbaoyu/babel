@@ -2,7 +2,13 @@ import { declarePreset } from "@babel/helper-plugin-utils";
 import transformFlowStripTypes from "@babel/plugin-transform-flow-strip-types";
 import normalizeOptions from "./normalize-options.ts";
 
-export default declarePreset((api, opts) => {
+export type Options = {
+  all?: boolean;
+  ignoreExtensions?: boolean;
+  experimental_useHermesParser?: boolean;
+};
+
+export default declarePreset((api, opts: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
   const {
     all,
