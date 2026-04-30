@@ -70,7 +70,6 @@
     "transform-named-capturing-groups-regex",
     "transform-new-target",
     "transform-object-super",
-    "transform-object-set-prototype-of-to-assign",
     "transform-parameters",
     "transform-property-literals",
     "transform-proto-to-assign",

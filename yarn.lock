@@ -3005,18 +3005,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@babel/plugin-transform-object-set-prototype-of-to-assign@workspace:^, @babel/plugin-transform-object-set-prototype-of-to-assign@workspace:packages/babel-plugin-transform-object-set-prototype-of-to-assign":
-  version: 0.0.0-use.local
-  resolution: "@babel/plugin-transform-object-set-prototype-of-to-assign@workspace:packages/babel-plugin-transform-object-set-prototype-of-to-assign"
-  dependencies:
-    "@babel/core": "workspace:^"
-    "@babel/helper-plugin-test-runner": "workspace:^"
-    "@babel/helper-plugin-utils": "workspace:^"
-  peerDependencies:
-    "@babel/core": "workspace:^"
-  languageName: unknown
-  linkType: soft
-
 "@babel/plugin-transform-object-super@npm:^8.0.0-rc.4":
   version: 8.0.0-rc.4
   resolution: "@babel/plugin-transform-object-super@npm:8.0.0-rc.4"
@@ -4028,7 +4016,6 @@ __metadata:
     "@babel/plugin-transform-nullish-coalescing-operator": "workspace:^"
     "@babel/plugin-transform-numeric-separator": "workspace:^"
     "@babel/plugin-transform-object-rest-spread": "workspace:^"
-    "@babel/plugin-transform-object-set-prototype-of-to-assign": "workspace:^"
     "@babel/plugin-transform-object-super": "workspace:^"
     "@babel/plugin-transform-optional-catch-binding": "workspace:^"
     "@babel/plugin-transform-optional-chaining": "workspace:^"

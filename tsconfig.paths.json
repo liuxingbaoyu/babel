@@ -320,9 +320,6 @@
       "@babel/plugin-transform-object-rest-spread": [
         "./packages/babel-plugin-transform-object-rest-spread/src"
       ],
-      "@babel/plugin-transform-object-set-prototype-of-to-assign": [
-        "./packages/babel-plugin-transform-object-set-prototype-of-to-assign/src"
-      ],
       "@babel/plugin-transform-object-super": [
         "./packages/babel-plugin-transform-object-super/src"
       ],
