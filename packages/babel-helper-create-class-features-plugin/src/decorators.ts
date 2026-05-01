@@ -2336,7 +2336,6 @@ export default function (
   return {
     name: "proposal-decorators",
     inherits: inherits,
-
     visitor: {
       ExportDefaultDeclaration(path, state) {
         const { declaration } = path.node;
