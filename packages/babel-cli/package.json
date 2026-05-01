@@ -41,7 +41,7 @@
     "@babel/helper-transform-fixture-test-runner": "workspace:^",
     "@types/fs-readdir-recursive": "^1.1.0",
     "@types/glob": "^7.2.0",
-    "semver": "^7.7.3"
+    "semver": "catalog:"
   },
   "bin": {
     "babel": "./bin/babel.js"

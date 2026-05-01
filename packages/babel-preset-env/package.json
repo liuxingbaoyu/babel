@@ -78,9 +78,9 @@
     "@babel/plugin-transform-unicode-regex": "workspace:^",
     "@babel/plugin-transform-unicode-sets-regex": "workspace:^",
     "@babel/preset-modules": "0.1.6-no-external-plugins",
-    "babel-plugin-polyfill-corejs3": "^1.0.0-rc.2",
-    "core-js-compat": "^3.48.0",
-    "semver": "^7.7.3"
+    "babel-plugin-polyfill-corejs3": "catalog:",
+    "core-js-compat": "catalog:",
+    "semver": "catalog:"
   },
   "peerDependencies": {
     "@babel/core": "workspace:^"

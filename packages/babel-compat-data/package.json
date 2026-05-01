@@ -28,7 +28,7 @@
   ],
   "devDependencies": {
     "@mdn/browser-compat-data": "^6.0.8",
-    "core-js-compat": "^3.48.0",
+    "core-js-compat": "catalog:",
     "electron-to-chromium": "^1.5.278"
   },
   "engines": {
