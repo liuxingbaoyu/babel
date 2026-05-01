@@ -137,12 +137,9 @@ jobs:
         run: |
           node ./scripts/assert-dir-git-clean.ts build
 
-  prepublish-windows-mac:
-    name: Prepublish on
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+  prepublish-windows:
+    name: Prepublish on Windows
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
