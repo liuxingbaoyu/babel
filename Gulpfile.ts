@@ -373,6 +373,7 @@ function buildRollup(packages: PackageInfo[], buildStandalone?: boolean) {
               filename ||
                 // ./packages/babel-foo/src/bar/baz.ts -> bar/baz.js
                 inputName
+                  .replaceAll("\\", "/")
                   .split("/")
                   .slice(4)
                   .join("/")
