@@ -1,23 +1,6 @@
 {
-  "noopPlugins": [
-    "syntax-async-generators",
-    "syntax-class-properties",
-    "syntax-class-static-block",
-    "syntax-import-meta",
-    "syntax-object-rest-spread",
-    "syntax-optional-catch-binding",
-    "syntax-top-level-await"
-  ],
-  "unexposedNoopPlugins": [
-    "syntax-logical-assignment-operators",
-    "syntax-nullish-coalescing-operator",
-    "syntax-dynamic-import",
-    "syntax-export-namespace-from",
-    "syntax-module-string-names",
-    "syntax-numeric-separator",
-    "syntax-optional-chaining",
-    "syntax-private-property-in-object"
-  ],
+  "noopPlugins": [],
+  "unexposedNoopPlugins": [],
   "externalPlugins": [
     "external-helpers",
     "syntax-decimal",

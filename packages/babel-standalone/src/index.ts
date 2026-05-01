@@ -6,7 +6,6 @@
  * and `registerPreset` respectively.
  */
 
-/* global VERSION */
 /// <reference lib="dom" />
 
 import {
@@ -254,8 +253,8 @@ export function registerPresets(
   );
 }
 
-// @ts-expect-error VERSION is to be replaced by rollup
-export const version: string = VERSION;
+declare const VERSION: string;
+export const version = VERSION;
 
 function onDOMContentLoaded() {
   transformScriptTags();

@@ -209,7 +209,7 @@ function generateStandalone() {
         transform: callbackify(async file => {
           log("Generating @babel/standalone files");
           const pluginConfig = JSON.parse(file.contents);
-          let imports = `import makeNoopPlugin from "../make-noop-plugin.ts";`;
+          let imports = ``;
           let exportDecls = "";
           let exportsList = "";
           let allList = "";
@@ -227,12 +227,17 @@ function generateStandalone() {
             allList += `"${plugin}": ${camelPlugin},`;
           }
 
+          if (exportDecls) {
+            imports =
+              `import makeNoopPlugin from "../make-noop-plugin.ts";` + imports;
+            exportDecls = `export const ${exportDecls.slice(0, -1)}`;
+          }
           const fileContents = `/*
    * This file is auto-generated! Do not modify it directly.
    * To re-generate run 'yarn gulp generate-standalone'
    */
   ${imports}
-  export const ${exportDecls.slice(0, -1)};
+  ${exportDecls};
   export {${exportsList}};
   export const all: Record<string, any> = {${allList}};`;
           file.path = "plugins.ts";

@@ -2,7 +2,6 @@
  * This file is auto-generated! Do not modify it directly.
  * To re-generate run 'yarn gulp generate-standalone'
  */
-import makeNoopPlugin from "../make-noop-plugin.ts";
 import externalHelpers from "@babel/plugin-external-helpers";
 import syntaxDecimal from "@babel/plugin-syntax-decimal";
 import syntaxDecorators from "@babel/plugin-syntax-decorators";
@@ -94,13 +93,6 @@ import transformUnicodeEscapes from "@babel/plugin-transform-unicode-escapes";
 import transformUnicodeRegex from "@babel/plugin-transform-unicode-regex";
 import transformExplicitResourceManagement from "@babel/plugin-transform-explicit-resource-management";
 import proposalImportDefer from "@babel/plugin-proposal-import-defer";
-export const syntaxAsyncGenerators = makeNoopPlugin(),
-  syntaxClassProperties = makeNoopPlugin(),
-  syntaxClassStaticBlock = makeNoopPlugin(),
-  syntaxImportMeta = makeNoopPlugin(),
-  syntaxObjectRestSpread = makeNoopPlugin(),
-  syntaxOptionalCatchBinding = makeNoopPlugin(),
-  syntaxTopLevelAwait = makeNoopPlugin();
 export {
   externalHelpers,
   syntaxDecimal,
@@ -195,13 +187,6 @@ export {
   proposalImportDefer,
 };
 export const all: Record<string, any> = {
-  "syntax-async-generators": syntaxAsyncGenerators,
-  "syntax-class-properties": syntaxClassProperties,
-  "syntax-class-static-block": syntaxClassStaticBlock,
-  "syntax-import-meta": syntaxImportMeta,
-  "syntax-object-rest-spread": syntaxObjectRestSpread,
-  "syntax-optional-catch-binding": syntaxOptionalCatchBinding,
-  "syntax-top-level-await": syntaxTopLevelAwait,
   "external-helpers": externalHelpers,
   "syntax-decimal": syntaxDecimal,
   "syntax-decorators": syntaxDecorators,
