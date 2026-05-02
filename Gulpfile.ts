@@ -487,7 +487,7 @@ function buildRollup(packages: PackageInfo[], buildStandalone?: boolean) {
               envName,
               babelHelpers: "bundled",
               configFile: "./babel.config.ts",
-              extensions: [".ts", ".js", ".mjs", ".cjs"],
+              extensions: [".ts", ".mts", ".cts", ".js", ".mjs", ".cjs"],
               ignore: ["packages/babel-runtime/helpers/*.js"],
             }),
             buildStandalone && {
