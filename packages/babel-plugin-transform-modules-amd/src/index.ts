@@ -48,6 +48,7 @@ function injectWrapper(
 export interface Options extends PluginOptions {
   allowTopLevelThis?: boolean;
   importInterop?: RewriteModuleStatementsAndPrepareHeaderOptions["importInterop"];
+  /** @deprecated Use the `constantReexports` and `enumerableModuleMeta` assumptions instead. */
   loose?: boolean;
   noInterop?: boolean;
   strict?: boolean;
@@ -62,6 +63,13 @@ type State = {
 
 export default declare<State>((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-modules-amd: The 'loose' option has been deprecated, " +
+        "use the `constantReexports` and `enumerableModuleMeta` assumptions instead.",
+    );
+  }
 
   const { allowTopLevelThis, strict, strictMode, importInterop, noInterop } =
     options;

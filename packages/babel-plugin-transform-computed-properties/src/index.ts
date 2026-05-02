@@ -3,6 +3,7 @@ import type { PluginPass, Scope } from "@babel/core";
 import { declare } from "@babel/helper-plugin-utils";
 
 export interface Options {
+  /** @deprecated Use the `setComputedProperties` assumption instead. */
   loose?: boolean;
 }
 
@@ -17,6 +18,13 @@ type PropertyInfo = {
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-computed-properties: The 'loose' option has been deprecated, " +
+        "use the 'setComputedProperties' assumption instead.",
+    );
+  }
 
   const setComputedProperties =
     api.assumption("setComputedProperties") ?? options.loose;

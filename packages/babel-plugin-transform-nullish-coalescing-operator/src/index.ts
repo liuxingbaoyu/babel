@@ -2,12 +2,21 @@ import { declare } from "@babel/helper-plugin-utils";
 import { types as t, template } from "@babel/core";
 
 export interface Options {
+  /** @deprecated Use the `noDocumentAll` assumption instead. */
   loose?: boolean;
 }
 
-export default declare((api, { loose = false }: Options) => {
+export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
-  const noDocumentAll = api.assumption("noDocumentAll") ?? loose;
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-nullish-coalescing-operator: The 'loose' option has been deprecated, " +
+        "use the `noDocumentAll` assumption instead.",
+    );
+  }
+
+  const noDocumentAll = api.assumption("noDocumentAll") ?? options.loose;
   const pureGetters = api.assumption("pureGetters") ?? false;
 
   return {

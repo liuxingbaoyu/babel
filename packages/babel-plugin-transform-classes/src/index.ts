@@ -19,11 +19,19 @@ const builtinClasses = new Set([
 builtinClasses.delete("Iterator");
 
 export interface Options {
+  /** @deprecated Use the 'setClassMethods', 'constantSuper', 'superIsCallableConstructor', and 'noClassCalls' assumptions instead. */
   loose?: boolean;
 }
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-classes: The 'loose' option has been deprecated, " +
+        "use the 'setClassMethods', 'constantSuper', 'superIsCallableConstructor', and 'noClassCalls' assumptions instead.",
+    );
+  }
 
   const { loose = false } = options;
 

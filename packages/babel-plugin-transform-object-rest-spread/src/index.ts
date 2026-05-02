@@ -12,11 +12,19 @@ import { unshiftForXStatementBody } from "@babel/plugin-transform-destructuring"
 
 export interface Options {
   useBuiltIns?: boolean;
+  /** @deprecated Use the `ignoreFunctionLength`, `objectRestNoSymbols`, `pureGetters`, and `setSpreadProperties` assumptions instead. */
   loose?: boolean;
 }
 
 export default declare((api, opts: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in opts) {
+    console.warn(
+      "@babel/plugin-transform-object-rest-spread: The 'loose' option has been deprecated, " +
+        "use the `ignoreFunctionLength`, `objectRestNoSymbols`, `pureGetters`, and `setSpreadProperties` assumptions instead.",
+    );
+  }
 
   const targets = api.targets();
   const supportsObjectAssign = !isRequired("Object.assign", targets, {

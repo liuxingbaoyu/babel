@@ -9,12 +9,20 @@ import annotateAsPure from "@babel/helper-annotate-as-pure";
 import type { NodePath, Scope, types as t } from "@babel/core";
 
 export interface Options {
+  /** @deprecated Use the `privateFieldsAsProperties`, `privateFieldsAsSymbols` and `setPublicClassFields` assumptions instead. */
   loose?: boolean;
 }
 export default declare((api, opt: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
   const { types: t, template } = api;
   const { loose } = opt;
+
+  if ("loose" in opt) {
+    console.warn(
+      "@babel/plugin-transform-private-property-in-object: The 'loose' option has been deprecated, " +
+        "use the `privateFieldsAsProperties`, `privateFieldsAsSymbols` and `setPublicClassFields` assumptions instead.",
+    );
+  }
 
   // NOTE: When using the class fields or private methods plugins,
   // they will also take care of '#priv in obj' checks when visiting

@@ -7,11 +7,19 @@ type ListElement = t.SpreadElement | t.Expression | null;
 
 export interface Options {
   allowArrayLike?: boolean;
+  /** @deprecated Use the `iterableIsArray` assumption instead. */
   loose?: boolean;
 }
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-spread: The 'loose' option has been deprecated, " +
+        "use the `iterableIsArray` assumption instead.",
+    );
+  }
 
   const iterableIsArray = api.assumption("iterableIsArray") ?? options.loose;
   const arrayLikeIsIterable =

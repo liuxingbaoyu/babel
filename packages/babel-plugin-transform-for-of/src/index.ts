@@ -6,6 +6,7 @@ import { skipTransparentExprWrapperNodes } from "@babel/helper-skip-transparent-
 export interface Options {
   allowArrayLike?: boolean;
   assumeArray?: boolean;
+  /** @deprecated Use the `iterableIsArray` assumption instead. */
   loose?: boolean;
 }
 
@@ -33,6 +34,13 @@ function buildLoopBody(
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-for-of: The 'loose' option has been deprecated, " +
+        "use the 'iterableIsArray' assumption instead.",
+    );
+  }
 
   {
     const { assumeArray, allowArrayLike, loose } = options;

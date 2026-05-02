@@ -1,11 +1,19 @@
 import { declare } from "@babel/helper-plugin-utils";
 
 export interface Options {
+  /** @deprecated Use the `noNewArrows` assumption instead. */
   spec?: boolean;
 }
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("spec" in options) {
+    console.warn(
+      "@babel/plugin-transform-arrow-functions: The 'spec' option has been deprecated, " +
+        "use the 'noNewArrows' assumption instead.",
+    );
+  }
 
   const noNewArrows = api.assumption("noNewArrows") ?? !options.spec;
 

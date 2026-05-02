@@ -27,12 +27,20 @@ function variableDeclarationHasDestructuringPattern(
 
 export interface Options {
   allowArrayLike?: boolean;
+  /** @deprecated Use the `iterableIsArray` and `objectRestNoSymbols` assumptions instead. */
   loose?: boolean;
   useBuiltIns?: boolean;
 }
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-destructuring: The 'loose' option has been deprecated, " +
+        "use the `iterableIsArray` and `objectRestNoSymbols` assumptions instead.",
+    );
+  }
 
   const { useBuiltIns = false } = options;
 

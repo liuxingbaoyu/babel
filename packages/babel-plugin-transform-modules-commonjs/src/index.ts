@@ -23,6 +23,7 @@ export interface Options extends PluginOptions {
   allowTopLevelThis?: boolean;
   importInterop?: RewriteModuleStatementsAndPrepareHeaderOptions["importInterop"];
   lazy?: RewriteModuleStatementsAndPrepareHeaderOptions["lazy"];
+  /** @deprecated Use the `constantReexports` and `enumerableModuleMeta` assumptions instead. */
   loose?: boolean;
   mjsStrictNamespace?: boolean;
   noInterop?: boolean;
@@ -33,6 +34,13 @@ export interface Options extends PluginOptions {
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-modules-commonjs: The 'loose' option has been deprecated, " +
+        "use the `constantReexports` and `enumerableModuleMeta` assumptions instead.",
+    );
+  }
 
   const {
     // 'true' for imports to strictly have .default, instead of having

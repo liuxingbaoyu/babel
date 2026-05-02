@@ -2,11 +2,19 @@ import { declare } from "@babel/helper-plugin-utils";
 import { template, types as t, type NodePath } from "@babel/core";
 
 export interface Options {
+  /** @deprecated Use the `ignoreToPrimitiveHint` and `mutableTemplateObject` assumptions instead. */
   loose?: boolean;
 }
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-template-literals: The 'loose' option has been deprecated, " +
+        "use the `ignoreToPrimitiveHint` and `mutableTemplateObject` assumptions instead.",
+    );
+  }
 
   const ignoreToPrimitiveHint =
     api.assumption("ignoreToPrimitiveHint") ?? options.loose;

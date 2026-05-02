@@ -45,6 +45,7 @@ export interface Options extends PluginOptions {
   exactGlobals?: boolean;
   globals?: Record<string, string>;
   importInterop?: RewriteModuleStatementsAndPrepareHeaderOptions["importInterop"];
+  /** @deprecated Use the `constantReexports` and `enumerableModuleMeta` assumptions instead. */
   loose?: boolean;
   noInterop?: boolean;
   strict?: boolean;
@@ -53,6 +54,13 @@ export interface Options extends PluginOptions {
 
 export default declare((api, options: Options) => {
   api.assertVersion(REQUIRED_VERSION("^7.0.0-0 || ^8.0.0"));
+
+  if ("loose" in options) {
+    console.warn(
+      "@babel/plugin-transform-modules-umd: The 'loose' option has been deprecated, " +
+        "use the `constantReexports` and `enumerableModuleMeta` assumptions instead.",
+    );
+  }
 
   const {
     globals,
