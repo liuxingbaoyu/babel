@@ -6,7 +6,7 @@ import { skipTransparentExprWrapperNodes } from "@babel/helper-skip-transparent-
 export interface Options {
   allowArrayLike?: boolean;
   assumeArray?: boolean;
-  /** @deprecated Use the `iterableIsArray` assumption instead. */
+  /** @deprecated Use the 'iterableIsArray' and 'skipForOfIteratorClosing' assumptions instead. */
   loose?: boolean;
 }
 
