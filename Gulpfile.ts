@@ -457,31 +457,10 @@ function buildRollup(packages: PackageInfo[], buildStandalone?: boolean) {
                 VERSION: JSON.stringify(version),
               },
             }),
-            rollupBabel({
-              envName,
-              skipPreflightCheck: true,
-              babelHelpers: "bundled",
-              configFile: false,
-              babelrc: false,
-              extensions: [".cts"],
-              presets: [
-                [
-                  "@babel/preset-typescript",
-                  {
-                    onlyRemoveTypeImports: true,
-                    optimizeConstEnums: true,
-                  },
-                ],
-              ],
-              include: [
-                "packages/babel-helper-transform-fixture-test-runner/src/*.cts",
-              ],
-            }),
             rollupCommonJs({
-              extensions: [".js", ".cts"],
               include: [
                 // Bundle node_modules only when building standalone
-                buildStandalone ? /node_modules/ : "./node_modules/**/*.js",
+                buildStandalone ? /node_modules/ : "./node_modules/*/*.js",
                 "packages/babel-runtime/regenerator/**",
                 "packages/babel-runtime/helpers/*.js",
                 "packages/babel-preset-env/data/*.js",
@@ -489,7 +468,7 @@ function buildRollup(packages: PackageInfo[], buildStandalone?: boolean) {
                 "packages/babel-compat-data/*.js",
                 // Used by @babel/standalone
                 "packages/babel-compat-data/scripts/data/legacy-plugin-aliases.js",
-                "packages/*/src/**/*.cts",
+                "packages/*/src/**/*.cjs",
               ],
               dynamicRequireTargets: [
                 // https://github.com/mathiasbynens/regexpu-core/blob/ffd8fff2e31f4597f6fdfee75d5ac1c5c8111ec3/rewrite-pattern.js#L48
@@ -512,11 +491,9 @@ function buildRollup(packages: PackageInfo[], buildStandalone?: boolean) {
             }),
             rollupBabel({
               envName,
-              skipPreflightCheck: true,
               babelHelpers: "bundled",
               configFile: "./babel.config.ts",
-              babelrc: false,
-              extensions: [".ts", ".mts", ".js", ".mjs", ".cjs"],
+              extensions: [".ts", ".js", ".mjs", ".cjs"],
               ignore: ["packages/babel-runtime/helpers/*.js"],
             }),
             buildStandalone && {
@@ -863,14 +840,6 @@ function* libBundlesIterator(): IterableIterator<PackageInfo> {
   const extraPackagesEntries = new Map<string, string[]>([
     ["babel-build-external-helpers", ["./lib/babel-build-external-helpers.js"]],
     ["babel-cli", ["./lib/babel/index.js"]],
-    [
-      "babel-helper-transform-fixture-test-runner",
-      [
-        "./lib/babel-helpers-in-memory.js",
-        "./lib/exit-loader.cjs",
-        "./lib/worker.cjs",
-      ],
-    ],
     ["babel-node", ["./lib/babel-node.js", "./lib/_babel-node.js"]],
     ["babel-register", ["./lib/worker/index.js"]],
     ["babel-eslint-parser", ["./lib/worker/index.js"]],
@@ -888,6 +857,8 @@ function* libBundlesIterator(): IterableIterator<PackageInfo> {
     // Many entry points
     "babel-runtime",
     "babel-runtime-corejs3",
+    // Rollup handles `worker.cts` very cumbersomely
+    "babel-helper-transform-fixture-test-runner",
   ]);
   for (const src of packagesIterator(noBundle)) {
     const pkgJSON = JSON.parse(
@@ -924,7 +895,7 @@ function* libBundlesIterator(): IterableIterator<PackageInfo> {
       throw new Error("Please specify the entry points for package: " + src);
     }
 
-    let inputs = entryPoints.map(lib => {
+    const inputs = entryPoints.map(lib => {
       // Prefix `./` to make it explicitly a relative path, otherwise rollup will
       // try to resolve `eslint/babel-eslint-parser` from node_modules
       const input = "./" + path.join(src, lib.replace("/lib/", "/src/"));
@@ -934,17 +905,6 @@ function* libBundlesIterator(): IterableIterator<PackageInfo> {
       return input.replace(/(\.c)?js$/, "$1ts");
     });
 
-    const ctsEntries = inputs.filter(e => e.endsWith(".cts"));
-    if (ctsEntries.length) {
-      yield {
-        src,
-        format: "cjs",
-        dest: "lib",
-        inputs: ctsEntries,
-        pkgJSON,
-      };
-      inputs = inputs.filter(e => !e.endsWith(".cts"));
-    }
     yield {
       src,
       format: "esm",
